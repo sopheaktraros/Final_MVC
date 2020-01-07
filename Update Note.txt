@@ -1,0 +1,33 @@
+function m_student_update($data){
+    include 'connection.php';
+    $id = $_GET['id'];
+    $query = "UPDATE employee  SET ";
+        foreach ($data as $field => $value) {
+            $query .= " $field='$value',";
+        }
+    $query = substr($query, 0, -1);
+    $query .= " WHERE id = '$id'";
+    $result = mysqli_query($connection, $query);
+    return $result;
+    
+}
+
+function m_update_employee($data) {
+    include 'connection.php';
+    $id = $_GET['id'];
+    $firstname  = $_POST['firstname'];
+    $lastname   = $_POST['lastname'];
+    $position   = $_POST['title'];
+    $age        = $_POST['age'];
+    $experience = $_POST['yearofservice'];
+    $salary     = $_POST['salary'];
+    $perks      = $_POST['perks'];
+    $email      = $_POST['email'];
+    $department = $_POST['departmentid'];
+
+    $query = "UPDATE employee SET firstname = '$firstname', lastname = '$lastname', title='$position', age=$age, yearofservice=$experience, salary=$salary,perks=$perks, email='$email',departmentid='$department'";
+    $query .="WHERE id='$id'";
+
+    $result = mysqli_query($connection, $query);
+    return $result;
+}
